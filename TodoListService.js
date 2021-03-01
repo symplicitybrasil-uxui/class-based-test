@@ -2,10 +2,6 @@ const API_URL = "https://5dbc736530411e0014f26e5f.mockapi.io/api/tasks";
 import TodoItemModel from "./TodoItemModel";
 
 export default class TodoListService {
-  constructor(httpService) {
-    this.httpService = httpService;
-  }
-
   getListItems() {
     return new Promise((resolve, reject) => {
       this.httpService.get(API_URL).then(data => {
@@ -32,26 +28,8 @@ export default class TodoListService {
   }
 
   saveListItem(listItemObject) {
-    return new Promise((resolve, reject) => {
-      this.httpService.post(API_URL, listItemObject).then(newItem => {
-        try {
-          if (newItem) {
-            resolve(
-              new TodoItemModel(
-                newItem.id,
-                newItem.createdAt,
-                newItem.title,
-                newItem.done
-              )
-            );
-          } else {
-            resolve({});
-          }
-        } catch (error) {
-          reject(error);
-        }
-      });
-    });
+    // this method must be responsible for sending a request to the API
+    // to save a new list item added by users
   }
 
   updateListItem(listItemObject, id) {

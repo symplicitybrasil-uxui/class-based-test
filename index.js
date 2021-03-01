@@ -6,7 +6,8 @@ import TodoListController from "./TodoListController";
 import TodoListService from "./TodoListService";
 
 const http = new HttpService();
-const todoListService = new TodoListService(http);
+// http must be used on TodoListService
+const todoListService = new TodoListService();
 const todoListController = new TodoListController(todoListService);
 
 todoListController.load();

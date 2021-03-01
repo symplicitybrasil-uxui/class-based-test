@@ -1,7 +1,6 @@
 import TodoListView from "./TodoListView";
 
 export default class TodoListController {
-  btnCreateTask = document.getElementById("btnCreateTask");
   listContainer = document.getElementById("list-container");
   taskInput = document.getElementById("taskTitle");
   listItems = [];
@@ -22,7 +21,7 @@ export default class TodoListController {
 
   _renderList() {
     if (this.listItems) {
-      const renderedList = this.todoListView.renderList(this.listItems);
+      // render the list
       if (renderedList) {
         this.listContainer.innerHTML = renderedList;
         this.listElement = this.listContainer.querySelector(".todo-list");
@@ -33,11 +32,8 @@ export default class TodoListController {
   }
 
   _bindCreateBtnEvent() {
-    this.btnCreateTask.addEventListener(
-      "click",
-      this._createListItem.bind(this),
-      false
-    );
+    // this method must be responsible for binding a function to
+    // a createBtnTask element
   }
 
   _bindEditButtonsEvent() {
@@ -121,18 +117,15 @@ export default class TodoListController {
       isTaskDone = taskElement.classList.contains("completed"),
       taskId = taskElement.dataset.id,
       editObject = { done: !isTaskDone };
+
     this.todoListService
       .updateListItem(editObject, taskId)
       .then(updatedItem => {
         this._updateListItem(updatedItem);
-        if (updatedItem.done) {
-          taskElement.classList.add("completed");
-        } else {
-          taskElement.classList.remove("completed");
-        }
+        // update taskElement class based on the returned item
+        // use the "completed" css class to indicate the state
       })
       .catch(function(error) {
-        // TODO - Handle adding new errors.
         console.log(error);
       });
   }
