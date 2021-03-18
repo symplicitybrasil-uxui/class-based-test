@@ -8,7 +8,8 @@ Basic Structure:
 - TodoListView -> Class to hold and render view template
 - TodoListController -> Main Class to hold business logic and interact with the other layers
 
-1. Implement a simple model to the TodoItemModel class based on this data model:
+1. Use `HttpService` to fix `TodoListService`;
+2. Implement a simple model to the TodoItemModel class based on this data model:
 
 API/GET
 [
@@ -26,10 +27,8 @@ API/GET
   }
 ]
 Note: this is a fundamental piece to consume and process data across the App
-
-2. Use `HttpService` to fix `TodoListService`;
-3. Implement the `saveListItem` method on `TodoListService`;
-4. Use the `renderList` method on `TodoListView` to render the view on `TodoListController`; 
-5. Search for `#btnCreateTask` and save it as a class property on `TodoListController`;
-6. Bind `TodoListController` method `_createListItem` to `#btnCreateTask`;
-7. Finish the `_toggleSave` method on `TodoListController`;
+3. Use the `renderList` method on `TodoListView` to render the view on `TodoListController`; 
+4. Search for `#btnCreateTask` and save it as a class property on `TodoListController`;
+5. Bind `TodoListController` method `_createListItem` to `#btnCreateTask`;
+6. Implement the `saveListItem` method on `TodoListService`;
+7. Finish the `_toggleComplete` method on `TodoListController`;

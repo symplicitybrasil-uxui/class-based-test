@@ -124,7 +124,7 @@ export default class TodoListController {
       .updateListItem(editObject, taskId)
       .then(updatedItem => {
         this._updateListItem(updatedItem);
-        // update taskElement class based on the returned item
+        // update taskElement based on the returned item
         // use the "completed" css class to indicate the state
       })
       .catch(function(error) {
