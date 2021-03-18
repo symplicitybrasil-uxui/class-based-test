@@ -27,7 +27,9 @@ API/GET
 ]
 Note: this is a fundamental piece to consume and process data across the App
 
-2. Use `HttpService` to fix `TodoListService`;
+1. Use `HttpService` to fix `TodoListService`;
+
+
 3. Implement the `saveListItem` method on `TodoListService`;
 4. Use the `renderList` method on `TodoListView` to render the view on `TodoListController`; 
 5. Search for `#btnCreateTask` and save it as a class property on `TodoListController`;
