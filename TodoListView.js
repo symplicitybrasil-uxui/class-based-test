@@ -5,12 +5,12 @@ export default class TodoListView {
     }
     return `
       <ul class="todo-list">
-        ${itemsList.map(listItem => this.renderListItem(listItem)).join("")}
+        ${itemsList.map(listItem => this._renderListItem(listItem)).join("")}
       </ul>
       `;
   }
 
-  renderListItem(listItem) {
+  _renderListItem(listItem) {
     const doneClass = listItem.done ? "completed" : "";
     return `
       <li class="todo-task ${doneClass}" data-id="${listItem.id}">
