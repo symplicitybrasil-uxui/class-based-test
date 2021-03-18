@@ -8,8 +8,9 @@ export default class TodoListService {
 
   getListItems() {
     return new Promise((resolve, reject) => {
-      this.httpService.get(API_URL).then(data => {
-        try {
+      this.httpService
+        .get(API_URL)
+        .then(data => {
           if (data) {
             let todoItems = data.map(
               item =>
@@ -24,17 +25,16 @@ export default class TodoListService {
           } else {
             resolve({});
           }
-        } catch (error) {
-          reject(error);
-        }
-      });
+        })
+        .catch(error => reject(error));
     });
   }
 
   saveListItem(listItemObject) {
     return new Promise((resolve, reject) => {
-      this.httpService.post(API_URL, listItemObject).then(newItem => {
-        try {
+      this.httpService
+        .post(API_URL, listItemObject)
+        .then(newItem => {
           if (newItem) {
             resolve(
               new TodoItemModel(
@@ -47,17 +47,16 @@ export default class TodoListService {
           } else {
             resolve({});
           }
-        } catch (error) {
-          reject(error);
-        }
-      });
+        })
+        .catch(error => reject(error));
     });
   }
 
   updateListItem(listItemObject, id) {
     return new Promise((resolve, reject) => {
-      this.httpService.put(API_URL, listItemObject, id).then(updatedItem => {
-        try {
+      this.httpService
+        .put(API_URL, listItemObject, id)
+        .then(updatedItem => {
           if (updatedItem) {
             resolve(
               new TodoItemModel(
@@ -70,10 +69,8 @@ export default class TodoListService {
           } else {
             resolve({});
           }
-        } catch (error) {
-          reject(error);
-        }
-      });
+        })
+        .catch(error => reject(error));
     });
   }
 }
