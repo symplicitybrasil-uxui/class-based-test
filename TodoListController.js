@@ -23,10 +23,10 @@ export default class TodoListController {
     if (this.listItems) {
       // render the list
       if (renderedList) {
-        this.listContainer.innerHTML = renderedList;
+        // update this.listContainer with renderedList
         this.listElement = this.listContainer.querySelector(".todo-list");
         this._bindEditButtonsEvent();
-        this._bindSaveButtonsEvent();
+        this._bindCompleteTaskEvent();
       }
     }
   }
@@ -37,19 +37,21 @@ export default class TodoListController {
   }
 
   _bindEditButtonsEvent() {
-    let editButtons = Array.from(this.listElement.querySelectorAll(".js-edit"));
+    const editButtons = Array.from(
+      this.listElement.querySelectorAll(".js-edit")
+    );
     editButtons.forEach(element =>
       element.addEventListener("click", this._toggleEdit.bind(this))
     );
   }
 
-  _bindSaveButtonsEvent() {
-    let saveButtons = Array.from(
+  _bindCompleteTaskEvent() {
+    const completeButtons = Array.from(
       this.listElement.querySelectorAll(".js-toggle-complete")
     );
 
-    saveButtons.forEach(element =>
-      element.addEventListener("click", this._toggleSave.bind(this))
+    completeButtons.forEach(element =>
+      element.addEventListener("click", this._toggleComplete.bind(this))
     );
   }
 
@@ -77,7 +79,7 @@ export default class TodoListController {
 
       this.listElement
         .querySelector(`[data-id="${newItem.id}"] .js-toggle-complete`)
-        .addEventListener("click", this._toggleSave.bind(this));
+        .addEventListener("click", this._toggleComplete.bind(this));
     }
     this.taskInput.focus();
   }
@@ -112,7 +114,7 @@ export default class TodoListController {
     }
   }
 
-  _toggleSave(event) {
+  _toggleComplete(event) {
     const taskElement = event.currentTarget.closest("li"),
       isTaskDone = taskElement.classList.contains("completed"),
       taskId = taskElement.dataset.id,

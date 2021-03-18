@@ -1,16 +1,16 @@
 export default class TodoListView {
-  renderList(itemsList) {
+  render(itemsList) {
     if (!itemsList.length) {
       return `<ul class="todo-list"></ul>`;
     }
     return `
       <ul class="todo-list">
-        ${itemsList.map(listItem => this.renderListItem(listItem)).join("")}
+        ${itemsList.map(listItem => this._renderListItem(listItem)).join("")}
       </ul>
       `;
   }
 
-  renderListItem(listItem) {
+  _renderListItem(listItem) {
     const doneClass = listItem.done ? "completed" : "";
     return `
       <li class="todo-task ${doneClass}" data-id="${listItem.id}">
